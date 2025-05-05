@@ -3,11 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { AppDataSource } from "@config/data-source";
 import path from "path";
-import PinCodeRoute from "@routes/PinCodeRoute";
 import helmet from "helmet";
-import AuthRoute from "@routes/AuthRoute";
-import SelectionRoute from "@routes/SelectionRoute";
-import VoteRoute from "@routes/VoteRoute";
 
 dotenv.config();
 AppDataSource.initialize();
@@ -34,11 +30,6 @@ app.use("/", cors({}), express.static(path.join(__dirname, "../uploads")));
 app.get("/", (req, res) => {
   res.send("Welcome to the vote API");
 });
-
-app.use("/pinCode", PinCodeRoute);
-app.use("/auth", AuthRoute);
-app.use("/selection", SelectionRoute);
-app.use("/vote", VoteRoute);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
